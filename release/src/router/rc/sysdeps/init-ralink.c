@@ -1391,6 +1391,12 @@ void init_syspara(void)
 		else
 			nvram_set("wl0_country_code", "DB");
 	}
+
+		nvram_set("reg_spec", "CN");
+		nvram_set("wl_country_code", "CN");
+		nvram_set("wl0_country_code", "CN");
+		nvram_set("wl_reg_2g", "2G_CH13");
+
 #ifdef RTCONFIG_HAS_5G
 #ifdef RTAC51U	/* FIX EU2CN */
 	if(NEED_eu2cn) {
