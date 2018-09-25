@@ -1437,6 +1437,8 @@ void stop_if_misc(void)
 
 int mssid_mac_validate(const char *macaddr)
 {
+	return 1;
+
 	unsigned char mac_binary[6];
 	unsigned long long macvalue;
 	char macbuf[13];
