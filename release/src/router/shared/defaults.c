@@ -287,7 +287,7 @@ struct nvram_tuple router_defaults[] = {
 #endif
 	{ "wl_mrate_x", "0", 0 },		/* Mcast Auto rate */
 #ifndef RTCONFIG_WIFILOGO
-	{ "wl_frameburst", "on", 0 },		/* BRCM Frambursting mode (off|on) */
+	{ "wl_frameburst", "off", 0 },		/* BRCM Frambursting mode (off|on) */
 #else
 	{ "wl_frameburst", "off", 0 },
 #endif
@@ -313,7 +313,7 @@ struct nvram_tuple router_defaults[] = {
 #if defined (RTAC1200GU) || defined (RTAC1200GA1) || defined (RTAC85U)
 	{ "wl_plcphdr", "long", 0 },		/* 802.11b PLCP preamble type */
 #else
-	{ "wl_plcphdr", "short", 0 },		/* 802.11b PLCP preamble type */
+	{ "wl_plcphdr", "long", 0 },		/* 802.11b PLCP preamble type */
 #endif
 #ifdef RTCONFIG_RALINK
 	{ "wl_nmode_protection", "auto", 0 },	/* 802.11n protection */
@@ -518,7 +518,7 @@ struct nvram_tuple router_defaults[] = {
 	{ "wl_wme_ap_vo", "3 7 1 3264 1504 off off", 0 },	/* WME AP AC_VO parameters */
 #endif
 	{ "wl_wme_no_ack", "off", 0 },		/* WME No-Acknowledgment mode */
-	{ "wl_wme_apsd", "on", 0 },		/* WME APSD mode */
+	{ "wl_wme_apsd", "off", 0 },		/* WME APSD mode */
 #ifdef RTCONFIG_RALINK
 #elif defined(RTCONFIG_QCA)
 #else
@@ -659,7 +659,7 @@ struct nvram_tuple router_defaults[] = {
 
 	// WPA parameters
 #ifdef RTCONFIG_RALINK
-	{ "wl_PktAggregate", "1" },	// UI configurable
+	{ "wl_PktAggregate", "0" },	// UI configurable
  	{ "wl_HT_OpMode", "0" }, 	// UI configurable
 #if defined(RTAC85U) || defined(RTAC65U)
 	{ "wl_DLSCapable", "1" },	// UI configurable
@@ -677,7 +677,7 @@ struct nvram_tuple router_defaults[] = {
 #else
 	{ "wl_HT_AMSDU", "0" },
 #endif
-	{ "wl_HT_GI", "1" },
+	{ "wl_HT_GI", "0" },
 	{ "wl_HT_BAWinSize", "64" },
 	{ "wl_HT_MCS", "33" },
 	{ "wl_HT_BADecline", "0" },
@@ -5063,7 +5063,7 @@ struct nvram_tuple router_defaults_override_type1[] = {
 #ifndef RTCONFIG_BCM7
 	{ "wl_pspretend_threshold", "0", 0 },	/* Disable PsPretend Threshold */
 	{ "wl_acs_chan_dwell_time", "70", 0 },	/* WAR for AP to stay on DFS chan */
-	{ "wl_frameburst", "on", 0 },		/* BRCM Frambursting mode (off|on) */
+	{ "wl_frameburst", "off", 0 },		/* BRCM Frambursting mode (off|on) */
 #if defined (RTCONFIG_BCMARM) && !defined (RTCONFIG_BCM7)
 	{ "frameburst_dyn", "0", 0 },		/* Frameburst controlled dynamically if on */
 #endif

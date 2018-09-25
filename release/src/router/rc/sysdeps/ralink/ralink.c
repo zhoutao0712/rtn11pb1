@@ -1387,7 +1387,8 @@ int gen_ralink_config(int band, int is_iNIC)
 	fprintf(fp, "HideSSID=%s\n", tmpstr);
 
 	//ShortSlot
-	fprintf(fp, "ShortSlot=%d\n", 1);
+//	fprintf(fp, "ShortSlot=%d\n", 1);
+	fprintf(fp, "ShortSlot=%d\n", 0);
 
 	//AutoChannelSelect
 	{
@@ -2276,6 +2277,7 @@ int gen_ralink_config(int band, int is_iNIC)
 	//HT_BW
 	//str = nvram_safe_get(strcat_r(prefix, "bw", tmp));
 
+/*
 	if (sw_mode == SW_MODE_REPEATER 
 #if defined(RTCONFIG_WIRELESSREPEATER) && defined(RTCONFIG_CONCURRENTREPEATER)
 		&& (wlc_express == 0 || (wlc_express - 1) != band)
@@ -2295,6 +2297,8 @@ int gen_ralink_config(int band, int is_iNIC)
 //		warning = 34;
 		fprintf(fp, "HT_BW=%d\n", 0);
 	}
+*/
+		fprintf(fp, "HT_BW=%d\n", 0);
 
 	//HT_BSSCoexistence
 	if ((wl_bw > 1) && (HTBW_MAX == 1) &&
@@ -2392,6 +2396,7 @@ int gen_ralink_config(int band, int is_iNIC)
 		fprintf(fp, "HT_MCS=%d\n", 33);
 	}
 
+/*
 	//HT_TxStream
 	str = nvram_safe_get(strcat_r(prefix, "HT_TxStream", tmp));
 	if (str && strlen(str))
@@ -2411,6 +2416,13 @@ int gen_ralink_config(int band, int is_iNIC)
 		warning = 43;
 		fprintf(fp, "HT_RxStream=%d\n", 3);
 	}
+*/
+
+		fprintf(fp, "HT_TxStream=%d\n", 1);
+		fprintf(fp, "HT_RxStream=%d\n", 1);
+
+		fprintf(fp, "PSMode=CAM\n");
+		fprintf(fp, "HT_MIMOPSMode=3\n");
 
 	//HT_PROTECT
 //	str = nvram_safe_get(strcat_r(prefix, "HT_PROTECT", tmp));
