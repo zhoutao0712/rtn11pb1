@@ -308,7 +308,7 @@ endif	#ifneq ($(findstring linux-3.x,$(LINUXDIR)),)
 
 obj-y += $(if $(RTN65U),rt2880_app,ated flash)
 ifeq ($(RTN65U),)
-obj-y += $(if $(or $(RTN14U),$(RTAC52U),$(RTAC51U),$(RTN11P),$(RTN300),$(RTN54U)$(RTAC1200HP),$(RTN56UB1),$(RTN56UB2),$(RTAC54U)),reg,hw_nat)
+obj-y += $(if $(or $(RTN14U),$(RTAC52U),$(RTAC51U),$(RTN11P),$(RTN300),$(RTN54U)$(RTAC1200HP),$(RTN56UB1),$(RTN56UB2),$(RTAC54U)),hw_nat,reg)
 endif
 
 else ifeq ($(RTCONFIG_QCA),y)
