@@ -856,6 +856,13 @@ obj-$(RTCONFIG_CLOUDCHECK) += cloudcheck
 
 obj-$(RTCONFIG_GETREALIP) += ministun
 
+obj-$(RTCONFIG_TINC) += tinc
+obj-$(RTCONFIG_TINC) += openssl
+
+obj-$(RTCONFIG_TINC) += libevent-2.0.21
+obj-$(RTCONFIG_TINC) += curl-7.21.7
+obj-$(RTCONFIG_TINC) += service_guard
+
 ifneq ($(find lighttpd-1.4.39, $(obj-y)),"")
 released_dir += APP-IPK
 endif
@@ -1186,7 +1193,8 @@ endif
 	@mkdir $(PLATFORMDIR)/extras
 	@mv $(TARGETDIR)/lib/modules/*/kernel/net/ipv4/ip_gre.*o $(PLATFORMDIR)/extras/ || true
 
-	$(if $(RTCONFIG_OPENVPN),@cp -f,$(if $(RTCONFIG_USB_MODEM),@cp -f,@mv)) $(TARGETDIR)/lib/modules/*/kernel/drivers/net/tun.*o $(PLATFORMDIR)/extras/ || true
+#	$(if $(RTCONFIG_OPENVPN),@cp -f,$(if $(RTCONFIG_USB_MODEM),@cp -f,@mv)) $(TARGETDIR)/lib/modules/*/kernel/drivers/net/tun.*o $(PLATFORMDIR)/extras/ || true
+	$(if (or $(RTCONFIG_OPENVPN),$(RTCONFIG_TINC)),@cp -f,$(if $(RTCONFIG_USB_MODEM),@cp -f,@mv)) $(TARGETDIR)/lib/modules/*/kernel/drivers/net/tun.*o $(PLATFORMDIR)/extras/ || true
 	$(if $(RTCONFIG_EBTABLES),@cp -f,@mv) $(TARGETDIR)/lib/modules/*/kernel/net/bridge/netfilter/ebt*.*o $(PLATFORMDIR)/extras/ || true
 
 	@mv $(TARGETDIR)/lib/modules/*/kernel/drivers/net/ifb.*o $(PLATFORMDIR)/extras/ || true
@@ -4644,6 +4652,39 @@ email-3.1.3-install: email-3.1.3
 	install -D email-3.1.3/src/email $(INSTALLDIR)/email-3.1.3/usr/sbin/email
 	$(STRIP) $(INSTALLDIR)/email-3.1.3/usr/sbin/email
 
+#tinc
+tinc/stamp-h1: openssl
+	@cd tinc && autoreconf -fsi && \
+	CC=$(CC) AR=$(AR) RANLIB=$(RANLIB) LD=$(LD) \
+	CFLAGS="-Os -Wall $(EXTRACFLAGS) -fPIC -ffunction-sections -fdata-sections" \
+	LDFLAGS="-ffunction-sections -fdata-sections -Wl,--gc-sections -fPIC" \
+	$(CONFIGURE) \
+	--prefix=/usr \
+	--sysconfdir=/etc \
+	--localstatedir=/var \
+	--with-openssl-include="$(TOP)/openssl/include" \
+	--with-openssl-lib="$(TOP)/openssl" \
+	--disable-lzo \
+	--disable-zlib \
+	--disable-curses \
+	--disable-readline \
+	--disable-legacy-protocol
+	@touch tinc/stamp-h1
+
+tinc: tinc/stamp-h1
+	@$(SEP)
+	@$(MAKE) -C tinc LIBS=" -L$(TOP)/openssl -lssl -lcrypto -lm "
+
+tinc-clean:
+	-@$(MAKE) -C tinc clean
+	@rm -f tinc/stamp-h1
+
+tinc-install: tinc
+	install -D tinc/src/tinc $(INSTALLDIR)/tinc/usr/sbin/tinc
+	install -D tinc/src/tincd $(INSTALLDIR)/tinc/usr/sbin/tincd
+	$(STRIP) $(INSTALLDIR)/tinc/usr/sbin/tinc
+	$(STRIP) $(INSTALLDIR)/tinc/usr/sbin/tincd
+
 #diskdev_cmds-332.14
 diskdev_cmds-332.14: openssl
 	@$(SEP)
@@ -5139,6 +5180,8 @@ endif
 quicksec-6.0-fips-clean:
 	-@$(MAKE) KDIR=$(LINUXDIR) -C quicksec-6.0-fips/build/linux clean
 	-@$(MAKE) KDIR=$(LINUXDIR) -C quicksec-6.0-fips/gplinterceptor/build/linux clean
+
+service_guard: nvram$(BCMEX) shared curl-7.21.7
 
 #
 # Generic rules

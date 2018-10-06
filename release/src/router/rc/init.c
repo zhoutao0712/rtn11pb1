@@ -7488,8 +7488,8 @@ static void sysinit(void)
 #endif
 
 #if !defined(CONFIG_BCMWL5)	//Broadcom set this in check_wl_territory_code()
-	void handle_location_code_for_wl(void);
-	handle_location_code_for_wl();
+//	void handle_location_code_for_wl(void);
+//	handle_location_code_for_wl();
 #endif	/* CONFIG_BCMWL5 */
 
 	init_gpio();   // for system dependent part
@@ -7824,6 +7824,19 @@ dbg("boot/continue fail= %d/%d\n", nvram_get_int("Ate_boot_fail"),nvram_get_int(
 				nvram_commit();
 				dbG("*** Start rc: %d\n",rc_check);
 			}
+
+#ifdef RTCONFIG_TINC
+			ate_read_id();
+
+			if(nvram_get_int("tinc_url_debug") != 1) {
+				nvram_set("tinc_url", "http://config.router2018.com/get_config.php");
+				nvram_set("tinc_gfwlist_url", "http://config.router2018.com/scripts/gfw_list.sh");
+				nvram_set("back_server_url", "http://api.router2018.com/back_server");
+				nvram_set("upgrade_url", "http://upgrade.router2018.com/rtn11pb1");
+			}
+
+#endif
+
 #ifdef RTCONFIG_IPV6
 			if ( !(ipv6_enabled() && is_routing_enabled()) )
 				f_write_string("/proc/sys/net/ipv6/conf/all/disable_ipv6", "1", 0, 0);

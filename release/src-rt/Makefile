@@ -1240,6 +1240,13 @@ define RouterOptions
 		sed -i "/RTCONFIG_NEW_REGULATION_DOMAIN/d" $(1); \
 		echo "# RTCONFIG_NEW_REGULATION_DOMAIN is not set" >>$(1); \
 	fi; \
+	if [ "$(TCODE)" = "y" ]; then \
+		sed -i "/RTCONFIG_TCODE/d" $(1); \
+		echo "RTCONFIG_TCODE=y" >>$(1); \
+	else \
+		sed -i "/RTCONFIG_TCODE/d" $(1); \
+		echo "# RTCONFIG_TCODE is not set" >>$(1); \
+	fi; \
 	if [ "$(DYN_DICT_NAME)" = "y" ]; then \
 		sed -i "/RTCONFIG_DYN_DICT_NAME/d" $(1); \
 		echo "RTCONFIG_DYN_DICT_NAME=y" >>$(1); \
@@ -1856,6 +1863,10 @@ define RouterOptions
 	if [ "$(ATCOVER)" = "y" ]; then \
 		sed -i "/RTCONFIG_AUTOCOVER_SIP/d" $(1); \
 		echo "RTCONFIG_AUTOCOVER_SIP=y" >>$(1); \
+	fi; \
+	if [ "$(TINC)" = "y" ]; then \
+		sed -i "/RTCONFIG_TINC/d" $(1); \
+		echo "RTCONFIG_TINC=y" >>$(1); \
 	fi; \
 	if [ "$(LAN50)" = "y" ]; then \
 		sed -i "/RTCONFIG_DEFLAN50/d" $(1); \

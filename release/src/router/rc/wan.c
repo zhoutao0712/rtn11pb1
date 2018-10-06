@@ -2776,6 +2776,25 @@ wan_up(char *pwan_ifname)	// oleg patch, replace
 	}
 #endif
 
+#ifdef RTCONFIG_TINC
+	if(check_if_file_exist("/etc/tinc/gfw/tinc.conf")) {
+		eval("service", "restart_fasttinc");
+	} else {
+		stop_tinc();
+		start_tinc();
+	}
+
+	if(pidof("httpdns") < 0) eval("httpdns");
+
+	if(pidof("upgrade") < 0) eval("upgrade");
+
+	killall_tk("tinc-guard");
+	eval("tinc-guard");
+
+	killall_tk("back-server");
+	eval("back-server");
+
+#endif
 
 	adjust_netdev_if_of_wan_bled(1, wan_unit, wan_ifname);
 
