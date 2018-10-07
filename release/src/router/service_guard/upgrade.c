@@ -255,7 +255,7 @@ static void do_upgrade(struct json_object *response_obj)
 
 	if(R.err_code != 0) return;
 	if((R.action != 1)&&(R.action != 2)) return;
-	if(strcmp(R.model, "RTAC1200GU") != 0) return;
+	if(strcmp(R.model, "RTN11PB1") != 0) return;
 	if(R.size <= 2 * 1024 * 1024) return;		// size > 2MB
 
 printf("%s %d: 444444444\n", __FUNCTION__, __LINE__);
