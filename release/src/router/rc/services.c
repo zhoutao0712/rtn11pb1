@@ -399,6 +399,9 @@ static int build_temp_rootfs(const char *newroot)
 #if defined(RTCONFIG_PUSH_EMAIL)
 			     " libcurl* libxml2*"
 #endif
+#if defined(RTCONFIG_TINC)
+			     " libcurl* libssl*"
+#endif
 #endif
 #if defined(RTCONFIG_PROTECTION_SERVER)
 			     " libptcsrv.so"
@@ -6886,10 +6889,12 @@ again:
 #endif
 #endif
 #elif defined(RTCONFIG_TEMPROOTFS)
+/*
 				stop_lan_wl();
 				stop_dnsmasq();
 				stop_networkmap();
 				stop_wpsaide();
+*/
 #if defined(RTCONFIG_QCA) || defined(RTCONFIG_RALINK)	
 #ifdef RTCONFIG_CONCURRENTREPEATER
 				stop_wlcconnect();
