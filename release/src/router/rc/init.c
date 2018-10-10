@@ -607,8 +607,9 @@ wl_defaults(void)
 	if (strlen(wl_vifnames))
 	{
 		strcpy(lan_ifnames, nvram_safe_get("lan_ifnames"));
-		foreach (word, wl_vifnames, next)
-			add_to_list(word, lan_ifnames, sizeof(lan_ifnames));
+		foreach (word, wl_vifnames, next) {
+			if(strncmp(word, "apcli", 5) != 0) add_to_list(word, lan_ifnames, sizeof(lan_ifnames));
+		}
 
 		nvram_set("lan_ifnames", lan_ifnames);
 	}
