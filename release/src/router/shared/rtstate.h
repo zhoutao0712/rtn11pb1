@@ -308,9 +308,9 @@ enum {
 #else
 #define sw_mode()            (nvram_get("sw_mode") ? nvram_get_int("sw_mode") : SW_MODE_ROUTER)
 #endif
-#define is_routing_enabled() (sw_mode()==SW_MODE_ROUTER||sw_mode()==SW_MODE_HOTSPOT)
-#define is_router_mode()     (sw_mode()==SW_MODE_ROUTER)
-#define is_nat_enabled()     ((sw_mode()==SW_MODE_ROUTER||sw_mode()==SW_MODE_HOTSPOT)&&nvram_get_int("wan0_nat_x")==1)
+#define is_routing_enabled() (sw_mode()==SW_MODE_ROUTER||sw_mode()==SW_MODE_HOTSPOT||sw_mode()==SW_MODE_REPEATER)
+#define is_router_mode()     (sw_mode()==SW_MODE_ROUTER||sw_mode()==SW_MODE_REPEATER)
+#define is_nat_enabled()     ((sw_mode()==SW_MODE_ROUTER||sw_mode()==SW_MODE_HOTSPOT||sw_mode()==SW_MODE_REPEATER)&&nvram_get_int("wan0_nat_x")==1)
 #define is_lan_connected()   (nvram_get_int("lan_state")==LAN_STATE_CONNECTED)
 #ifdef RTCONFIG_WIRELESSWAN
 #define is_wirelesswan_enabled() (sw_mode()==SW_MODE_HOTSPOT)
