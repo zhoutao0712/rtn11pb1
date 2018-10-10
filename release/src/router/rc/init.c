@@ -7672,6 +7672,13 @@ int init_main(int argc, char *argv[])
 		state = SIGUSR2;	/* START */
 	}
 
+
+	if(sw_mode()==SW_MODE_REPEATER){
+		nvram_set("wan_ifnames", "apcli0");
+		nvram_set("wan0_ifname", "apcli0");
+	}
+
+
 	for (;;) {
 //		TRACE_PT("main loop signal/state=%d\n", state);
 
