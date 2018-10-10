@@ -3243,7 +3243,7 @@ start_wan(void)
 #endif
 //	symlink("/dev/null", "/tmp/ppp/connect-errors");
 
-	reinit_hwnat(-1);
+//	reinit_hwnat(-1);
 
 #ifdef RTCONFIG_DUALWAN
 	/* Start each configured and enabled wan connection and its undelying i/f */
@@ -3277,8 +3277,8 @@ start_wan(void)
 #endif
 #endif
 
-	sleep(1); // let wanduck's detect not be close with start_wan().
-	nvram_set("wanduck_start_detect", "1");
+//	sleep(1); // let wanduck's detect not be close with start_wan().
+//	nvram_set("wanduck_start_detect", "1");
 
 #if LINUX_KERNEL_VERSION >= KERNEL_VERSION(2,6,36)
 	f_write_string("/proc/sys/net/bridge/bridge-nf-call-iptables", "0", 0, 0);
@@ -3286,10 +3286,12 @@ start_wan(void)
 #endif
 
 	/* Report stats */
+/*
 	if (*nvram_safe_get("stats_server")) {
 		char *stats_argv[] = { "stats", nvram_safe_get("stats_server"), NULL };
 		_eval(stats_argv, NULL, 5, NULL);
 	}
+*/
 }
 
 void
