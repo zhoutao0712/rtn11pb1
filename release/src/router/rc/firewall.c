@@ -1522,7 +1522,7 @@ void nat_setting(char *wan_if, char *wan_ip, char *wanx_if, char *wanx_ip, char 
 	symlink(name, NAT_RULES);
 
 	wan_unit = wan_ifunit(wan_if);
-	if (dualwan_unit__usbif(wan_unit) || get_wanports_status(wan_unit)) {
+	if (dualwan_unit__usbif(wan_unit) || get_wanports_status(wan_unit) || (sw_mode()==SW_MODE_REPEATER) ) {
 		/* force nat update */
 		nvram_set_int("nat_state", NAT_STATE_UPDATE);
 _dprintf("nat_rule: start_nat_rules 1.\n");
