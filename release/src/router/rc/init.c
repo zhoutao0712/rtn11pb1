@@ -7886,7 +7886,7 @@ dbg("boot/continue fail= %d/%d\n", nvram_get_int("Ate_boot_fail"),nvram_get_int(
 				nvram_set_int("wlready", 1);
 #endif	/* CONFIG_BCMWL5 */
 			}
-			start_wan();
+			if(sw_mode() != SW_MODE_REPEATER) start_wan();
 
 #ifdef RTCONFIG_QTN	/* AP and Repeater mode, workaround to infosvr, RT-AC87U bug#38, bug#44, bug#46 */
 			if (nvram_get_int("sw_mode") == SW_MODE_REPEATER ||
