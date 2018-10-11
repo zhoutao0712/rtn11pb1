@@ -8774,6 +8774,10 @@ check_ddr_done:
 	{
 		if(cmd[1]&& (atoi(cmd[1]) != nvram_get_int("wlc_mode"))) {
 			nvram_set_int("wlc_mode", atoi(cmd[1]));
+
+			stop_wan();
+			start_wan();
+/*
 			if(nvram_match("lan_proto", "dhcp") && atoi(cmd[1])==0) {
 				nvram_set("lan_ipaddr", nvram_default_get("lan_ipaddr"));
 			}
@@ -8822,6 +8826,7 @@ check_ddr_done:
 			start_samba();
 			start_ftpd();
 #endif
+*/
 		}
 	}
 #endif
