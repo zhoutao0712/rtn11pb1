@@ -3261,7 +3261,7 @@ lan_up(char *lan_ifname)
 			|| (nvram_get_int("sw_mode") == SW_MODE_REPEATER && nvram_get_int("wlc_state") == WLC_STATE_CONNECTED)
 #endif
 			) {
-		route_add(lan_ifname, 0, "0.0.0.0", nvram_safe_get("lan_gateway"), "0.0.0.0");
+//		route_add(lan_ifname, 0, "0.0.0.0", nvram_safe_get("lan_gateway"), "0.0.0.0");
 
 		/* Sync time */
 		if (!pids("ntp"))

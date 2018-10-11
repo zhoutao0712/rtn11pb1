@@ -1729,6 +1729,7 @@ _dprintf("start_wan_if: USB modem is scanning...\n");
 		set_et_qos_mode();
 #endif
 
+/*
 #if defined(RTCONFIG_DUALWAN)
 		pppoerelay_unit = wan_primary_ifunit();
 		if (nvram_match("wans_mode", "lb") && get_nr_wan_unit() > 1)
@@ -1739,6 +1740,7 @@ _dprintf("start_wan_if: USB modem is scanning...\n");
 		if (unit == wan_primary_ifunit())
 			start_pppoe_relay(wan_ifname);
 #endif
+*/
 
 		enable_ip_forward();
 
@@ -2601,6 +2603,7 @@ wan_up(char *pwan_ifname)	// oleg patch, replace
 		}
 		/* replaced with add_multi_routes()
 		route_add(wan_ifname, 0, "0.0.0.0", gateway, "0.0.0.0"); */
+		route_add(wan_ifname, 0, "0.0.0.0", gateway, "0.0.0.0");
 	}
 
 	/* hack: avoid routing cycles, when both peer and server has the same IP */
@@ -2692,7 +2695,7 @@ wan_up(char *pwan_ifname)	// oleg patch, replace
 	update_resolvconf();
 
 	/* default route via default gateway */
-	add_multi_routes();
+//	add_multi_routes();
 
 #ifdef RTCONFIG_USB_MODEM
 #ifdef RTCONFIG_INTERNAL_GOBI
