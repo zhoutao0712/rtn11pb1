@@ -3586,6 +3586,8 @@ int write_lltd_conf(void)
 
 int start_lltd(void)
 {
+	return 0;
+
 	chdir("/usr/sbin");
 
 #if defined(CONFIG_BCMWL5) && !defined(RTCONFIG_BCMARM)
@@ -3628,6 +3630,8 @@ int start_lltd(void)
 
 void stop_lltd(void)
 {
+	return;
+
 #if defined(CONFIG_BCMWL5) && !defined(RTCONFIG_BCMARM)
 	char *odmpid = nvram_safe_get("odmpid");
 	int model = get_model();

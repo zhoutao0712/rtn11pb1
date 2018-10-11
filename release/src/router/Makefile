@@ -760,7 +760,7 @@ ifeq ($(RTCONFIG_BCMWL6),y)
 obj-y += acsd$(BCMEX)$(EX7)
 endif
 else
-obj-y += lldt
+#obj-y += lldt
 endif
 obj-$(RTCONFIG_JFFS2USERICON) += lltdc
 
