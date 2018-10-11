@@ -8796,12 +8796,14 @@ check_ddr_done:
 			stop_sshd();
 #endif
 			stop_dnsmasq();
-			stop_lan_wlc();
+//			stop_lan_wlc();
+			stop_wan();
 			stop_lan_port();
 			stop_lan_wlport();
 			start_lan_wlport();
 			start_lan_port(8);
-			start_lan_wlc();
+//			start_lan_wlc();
+			start_wan();
 			start_dnsmasq();
 			start_httpd();
 			start_telnetd();
