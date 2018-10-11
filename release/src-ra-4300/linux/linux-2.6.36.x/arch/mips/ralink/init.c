@@ -496,7 +496,8 @@ void prom_init_sysclk(void)
 #elif defined (CONFIG_RALINK_MT7628)
 	case 0:
 		reg = (*(volatile u32 *)(RALINK_SYSCTL_BASE + 0x10));
-		if (reg & 0x80)
+		reg = reg | 0x40;
+		if (reg & 0x40)
 		{
 			/* 40MHz Xtal */
 			mips_cpu_feq = 580 * 1000 * 1000;
