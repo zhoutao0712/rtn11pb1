@@ -164,6 +164,11 @@ static struct mtd_partition rt2880_partitions[] = {
 
 #define FLASH_PAGESIZE		256
 
+#ifdef CONFIG_MTD_SPI_FAST_CLOCK
+#define CFG_CLK_DIV		SPICFG_SPICLK_DIV4 /* 166/4 = 41.0 MHz */
+#else
+#define CFG_CLK_DIV		SPICFG_SPICLK_DIV8 /* 166/8 = 20.5 MHz */
+#endif
 
 /* Flash opcodes. */
 #define OPCODE_WREN		6	/* Write enable */

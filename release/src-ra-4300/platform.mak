@@ -306,6 +306,10 @@ define platformKernelConfig
 			sed -i "//d" $(1); \
 			echo "CONFIG_MTD_SPI_FAST_CLOCK=y" >>$(1); \
 		fi; \
+		if [ "$(RTN11PB1)" = "y" ] && [ $(BOOT_FLASH_TYPE) = "SPI" ] ; then \
+			sed -i "//d" $(1); \
+			echo "CONFIG_MTD_SPI_FAST_CLOCK=y" >>$(1); \
+		fi; \
 		if [ "$(RTAC52U)" = "y" ] || [ "$(RTAC51U)" = "y" ] || [ "$(RTAC51UP)" = "y" ] || [ "$(RTN11P)" = "y" ] || [ "$(RTN54U)" = "y" ] || [ "$(RTN14U)" = "y" ] || [ "$(RTAC53)" = "y" ] ; then \
 			sed -i "/CONFIG_RT2860V2_AP_EDCCA_MONITOR/d" $(1); \
 			echo "CONFIG_RT2860V2_AP_EDCCA_MONITOR=y" >>$(1); \
