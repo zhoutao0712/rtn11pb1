@@ -412,9 +412,11 @@ wl_defaults(void)
 				{
 					nvram_set(strcat_r(prefix, "bss_enabled", tmp), "1");
 				}
+/*
 				else {
 					nvram_set(strcat_r(prefix, "bss_enabled", tmp), "0");
 				}
+*/
 #endif
 			}
 #endif
