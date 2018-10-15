@@ -1453,6 +1453,7 @@ int gen_ralink_config(int band, int is_iNIC)
 
 	for (i = 0; i < MAX_NO_MSSID; i++)
 	{
+/*
 		if (sw_mode == SW_MODE_REPEATER 
 #if defined(RTCONFIG_WIRELESSREPEATER) && defined(RTCONFIG_CONCURRENTREPEATER)
 			&& (wlc_express == 0 || (wlc_express - 1) != band)
@@ -1461,6 +1462,7 @@ int gen_ralink_config(int band, int is_iNIC)
 #endif
 			&& i != 1)
 				continue;
+*/
 		if (i)
 		{
 			sprintf(prefix_mssid, "wl%d.%d_", band, i);
@@ -1609,6 +1611,7 @@ int gen_ralink_config(int band, int is_iNIC)
 
 	for (i = 0; i < MAX_NO_MSSID; i++)
 	{
+/*
 		if (sw_mode == SW_MODE_REPEATER
 #if defined(RTCONFIG_WIRELESSREPEATER) && defined(RTCONFIG_CONCURRENTREPEATER)
 			&& (wlc_express == 0 || (wlc_express - 1) != band)
@@ -1617,6 +1620,7 @@ int gen_ralink_config(int band, int is_iNIC)
 #endif
 			&& i != 1)
 				continue;	
+*/
 		if (i)
 		{
 			sprintf(prefix_mssid, "wl%d.%d_", band, i);
@@ -1694,6 +1698,7 @@ int gen_ralink_config(int band, int is_iNIC)
 
 	for (i = 0; i < MAX_NO_MSSID; i++)
 	{
+/*
 		if (sw_mode == SW_MODE_REPEATER
 #if defined(RTCONFIG_WIRELESSREPEATER) && defined(RTCONFIG_CONCURRENTREPEATER)
 			&& (wlc_express == 0 || (wlc_express - 1) != band)
@@ -1702,6 +1707,7 @@ int gen_ralink_config(int band, int is_iNIC)
 #endif
 			&& i != 1)
 				continue;	
+*/
 		if (i)
 		{
 			sprintf(prefix_mssid, "wl%d.%d_", band, i);
@@ -1791,6 +1797,7 @@ int gen_ralink_config(int band, int is_iNIC)
 	fprintf(fp, "MeshWEPKEY=\n");
 	fprintf(fp, "MeshWPAKEY=\n");
 	fprintf(fp, "MeshId=\n");
+/*
 	if (sw_mode == SW_MODE_REPEATER
 #if defined(RTCONFIG_WIRELESSREPEATER) && defined(RTCONFIG_CONCURRENTREPEATER)
 			&& (wlc_express == 0 || (wlc_express - 1) != band)
@@ -1806,6 +1813,7 @@ int gen_ralink_config(int band, int is_iNIC)
 	 	fprintf(fp, "%s", tmpstr);
 	}
 	else
+*/
    	{	   
 		//WPAPSK
 		for (i = 0, j = 0; i < MAX_NO_MSSID; i++)
@@ -1838,6 +1846,7 @@ int gen_ralink_config(int band, int is_iNIC)
 
 	for (i = 0; i < MAX_NO_MSSID; i++)
 	{
+/*
 		if (sw_mode == SW_MODE_REPEATER 
 #if defined(RTCONFIG_WIRELESSREPEATER) && defined(RTCONFIG_CONCURRENTREPEATER)
 			&& (wlc_express == 0 || (wlc_express - 1) != band)
@@ -1846,6 +1855,7 @@ int gen_ralink_config(int band, int is_iNIC)
 #endif
 			&& i != 1)
 				continue;	
+*/
 		if (i)
 		{
 			sprintf(prefix_mssid, "wl%d.%d_", band, i);
@@ -1872,7 +1882,7 @@ int gen_ralink_config(int band, int is_iNIC)
 
 	for (i = 0, j = 0; i < MAX_NO_MSSID; i++)
 	{
-
+/*
 		if (sw_mode == SW_MODE_REPEATER 
 #if defined(RTCONFIG_WIRELESSREPEATER) && defined(RTCONFIG_CONCURRENTREPEATER)
 			&& (wlc_express == 0 || (wlc_express - 1) != band)
@@ -1881,7 +1891,7 @@ int gen_ralink_config(int band, int is_iNIC)
 #endif
 			&& i != 1)
 				continue;	
-
+*/
 		if (i)
 			snprintf(prefix_mssid, sizeof(prefix_mssid), "wl%d.%d_", band, i);
 		else
