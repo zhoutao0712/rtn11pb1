@@ -1932,6 +1932,8 @@ void start_lan(void)
 					if (nvram_get_int("emf_enable"))
 						eval("emf", "add", "iface", lan_ifname, ifname);
 #endif
+					if(nvram_get_int("sw_mode") == SW_MODE_REPEATER && strcmp(ifname, "ra0") == 0)
+						ifconfig(ifname, 0, NULL, NULL);
 				}
 #ifdef RTCONFIG_GMAC3
 gmac3_no_swbr:
@@ -3812,6 +3814,8 @@ void start_lan_wl(void)
 					if (nvram_get_int("emf_enable"))
 						eval("emf", "add", "iface", lan_ifname, ifname);
 #endif
+					if(nvram_get_int("sw_mode") == SW_MODE_REPEATER && strcmp(ifname, "ra0") == 0)
+						ifconfig(ifname, 0, NULL, NULL);
 				}
 #ifdef RTCONFIG_GMAC3
 gmac3_no_swbr:
