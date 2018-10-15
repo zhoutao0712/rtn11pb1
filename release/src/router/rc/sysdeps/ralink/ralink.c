@@ -963,23 +963,23 @@ int gen_ralink_config(int band, int is_iNIC)
 		ssid_num = 1;
 	}
 
-#ifdef RTCONFIG_WIRELESSREPEATER
-#if defined(RTCONFIG_CONCURRENTREPEATER)
-	if (sw_mode == SW_MODE_REPEATER && (wlc_express == 0 || (wlc_express - 1) != band))  //(wlc_express - 1) != band for set ra0 or rai0
-#else
-	if (sw_mode == SW_MODE_REPEATER && wlc_band == band)
-#endif
-	{
-		ssid_num = 1;
-		fprintf(fp, "BssidNum=%d\n", ssid_num);
-		if(band == 0)
-			sprintf(tmpstr, "SSID1=%s\n",  nvram_safe_get("wl0.1_ssid"));
-		else
-			sprintf(tmpstr, "SSID1=%s\n",  nvram_safe_get("wl1.1_ssid"));
-		fprintf(fp, "%s", tmpstr);
-	}
-	else
-#endif	/* RTCONFIG_WIRELESSREPEATER */
+//#ifdef RTCONFIG_WIRELESSREPEATER
+//#if defined(RTCONFIG_CONCURRENTREPEATER)
+//	if (sw_mode == SW_MODE_REPEATER && (wlc_express == 0 || (wlc_express - 1) != band))  //(wlc_express - 1) != band for set ra0 or rai0
+//#else
+//	if (sw_mode == SW_MODE_REPEATER && wlc_band == band)
+//#endif
+//	{
+//		ssid_num = 1;
+//		fprintf(fp, "BssidNum=%d\n", ssid_num);
+//		if(band == 0)
+//			sprintf(tmpstr, "SSID1=%s\n",  nvram_safe_get("wl0.1_ssid"));
+//		else
+//			sprintf(tmpstr, "SSID1=%s\n",  nvram_safe_get("wl1.1_ssid"));
+//		fprintf(fp, "%s", tmpstr);
+//	}
+//	else
+//#endif	/* RTCONFIG_WIRELESSREPEATER */
 	{   
 		fprintf(fp, "BssidNum=%d\n", ssid_num);
 		//SSID
