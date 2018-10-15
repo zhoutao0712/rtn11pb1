@@ -268,8 +268,8 @@ function isSupport(_ptn){
 	else if(_ptn == "mssid"){
 		var wl_vifnames = '<% nvram_get("wl_vifnames"); %>';
 		var multissid = rc_support.search("mssid");
-		if(sw_mode == 2 || sw_mode == 4)
-			multissid = -1;
+//		if(sw_mode == 2 || sw_mode == 4)
+//			multissid = -1;
 		if(multissid != -1)
 			multissid = wl_vifnames.split(" ").length;
 		return multissid;
@@ -1208,11 +1208,11 @@ function remove_url(){
 
 	if(sw_mode == 2 || sw_mode == 4){
 		// Guest Network
-		menuL1_title[2] ="";
-		menuL1_link[2] ="";
+//		menuL1_title[2] ="";
+//		menuL1_link[2] ="";
 		// Traffic Manager
-		menuL1_title[3] ="";
-		menuL1_link[3] ="";
+//		menuL1_title[3] ="";
+//		menuL1_link[3] ="";
 		// Parental Ctrl
 		menuL1_title[4] ="";
 		menuL1_link[4] ="";				
@@ -1256,28 +1256,28 @@ function remove_url(){
 		menuL2_title[2]="";
 		menuL2_link[2]="";
 		// WAN
-		menuL2_title[4]="";
-		menuL2_link[4]="";	
+//		menuL2_title[4]="";
+//		menuL2_link[4]="";	
 		// LAN
-		remove_menu_item("Advanced_DHCP_Content.asp");
-		remove_menu_item("Advanced_GWStaticRoute_Content.asp");
+//		remove_menu_item("Advanced_DHCP_Content.asp");
+//		remove_menu_item("Advanced_GWStaticRoute_Content.asp");
 		remove_menu_item("Advanced_IPTV_Content.asp");								
 		remove_menu_item("Advanced_SwitchCtrl_Content.asp");
 		//IPv6
 		menuL2_title[6]="";
 		menuL2_link[6]="";
 		// VPN
-		menuL2_title[7]="";
-		menuL2_link[7]="";
+//		menuL2_title[7]="";
+//		menuL2_link[7]="";
 		// Firewall		
-		menuL2_title[8]="";
-		menuL2_link[8]="";
+//		menuL2_title[8]="";
+//		menuL2_link[8]="";
 		// Log
-		remove_menu_item("Main_DHCPStatus_Content.asp");
+//		remove_menu_item("Main_DHCPStatus_Content.asp");
 		remove_menu_item("Main_IPV6Status_Content.asp");
-		remove_menu_item("Main_RouteStatus_Content.asp");
-		remove_menu_item("Main_IPTStatus_Content.asp");
-		remove_menu_item("Main_ConnStatus_Content.asp");
+//		remove_menu_item("Main_RouteStatus_Content.asp");
+//		remove_menu_item("Main_IPTStatus_Content.asp");
+//		remove_menu_item("Main_ConnStatus_Content.asp");
 	}
 	else if(sw_mode == 3){
 		// Traffic Manager
