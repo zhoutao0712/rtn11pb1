@@ -725,6 +725,7 @@ char *get_wlifname(int unit, int subunit, int subunit_x, char *buf)
 {
 	char wifbuf[32];
 	char prefix[]="wlXXXXXX_", tmp[100];
+/*
 #if defined(RTCONFIG_WIRELESSREPEATER)
 	if (sw_mode() == SW_MODE_REPEATER
 #if !defined(RTCONFIG_CONCURRENTREPEATER)
@@ -738,7 +739,7 @@ char *get_wlifname(int unit, int subunit, int subunit_x, char *buf)
 			sprintf(buf, "%s", APCLI_2G);
 	}
 	else
-#endif /* RTCONFIG_WIRELESSREPEATER */
+#endif *//* RTCONFIG_WIRELESSREPEATER */
 	{
 		memset(wifbuf, 0, sizeof(wifbuf));
 
