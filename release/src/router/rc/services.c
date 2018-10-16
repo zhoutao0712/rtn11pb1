@@ -3146,6 +3146,7 @@ start_httpd(void)
 #endif
 	chdir("/www");
 
+/*
 	if (is_routing_enabled()) {
 		httpd_argv[httpd_index++] = "-i";
 		httpd_argv[httpd_index++] = nvram_safe_get("lan_ifname");
@@ -3154,6 +3155,7 @@ start_httpd(void)
 		https_argv[https_index++] = nvram_safe_get("lan_ifname");
 #endif
 	}
+*/
 
 #ifdef RTCONFIG_HTTPS
 	enable = nvram_get_int("http_enable");
