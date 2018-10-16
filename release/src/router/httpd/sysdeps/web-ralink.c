@@ -1583,6 +1583,8 @@ static int ej_wl_rate(int eid, webs_t wp, int argc, char_t **argv, int unit)
 #else
 		goto ERROR;
 	name = nvram_safe_get(strcat_r(prefix, "ifname", tmp));
+	if(unit == 0) name = "apcli0";
+	if(unit == 1) name = "apclii0";
 
 	memset(tmp, 0x00, sizeof(tmp));
 	wrq.u.data.length = sizeof(tmp);
