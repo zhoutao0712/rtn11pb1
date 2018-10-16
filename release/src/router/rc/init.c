@@ -6719,6 +6719,8 @@ int init_nvram2(void)
 		nvram_set("dms_friendly_name", friendly_name);
 		nvram_set("daapd_friendly_name", friendly_name);
 
+		nvram_set("http_passwd", "admin1234");
+
 #if defined(BRTAC828)
 		sprintf(friendly_name, "%s-%02X%02X", "BRT-AC828", mac_binary[4], mac_binary[5]);
 		nvram_set("computer_name", friendly_name);
