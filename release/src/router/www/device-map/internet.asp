@@ -152,7 +152,7 @@ function initial(){
 		}
 	}
  
-	if(sw_mode == 1){
+	if((sw_mode == 1) || (sw_mode == 2)){
 		setTimeout("update_wanip();", 1);
 		document.getElementById('goSetting').style.display = "";
 		
