@@ -433,13 +433,13 @@ struct nvram_tuple router_defaults[] = {
 #endif	// BCMWL6
 #endif	// RALINK
 	/* WPA parameters */
-	{ "wl_auth_mode", "none", 0 },		/* Network authentication mode (radius|none) */
-	{ "wl_wpa_psk", "", 0 },		/* WPA pre-shared key */
+	{ "wl_auth_mode", "psk2", 0 },		/* Network authentication mode (radius|none) */
+	{ "wl_wpa_psk", "1234567890", 0 },		/* WPA pre-shared key */
 	{ "wl_wpa_gtk_rekey", "3600", 0 },	/* GTK rotation interval */
 	{ "wl_radius_ipaddr", "", 0 },		/* RADIUS server IP address */
 	{ "wl_radius_key", "", 0 },		/* RADIUS shared secret */
 	{ "wl_radius_port", "1812", 0 },	/* RADIUS server UDP port */
-	{ "wl_crypto", "tkip+aes", 0 },		/* WPA data encryption */
+	{ "wl_crypto", "aes", 0 },		/* WPA data encryption */
 #if 0
 	{ "wl_net_reauth", "3600", 0 },		/* Network Re-auth/PMK caching duration */
 #else
@@ -540,7 +540,7 @@ struct nvram_tuple router_defaults[] = {
 #else
 	{ "wl_bw", "1", 0 },		/* 0/1/2/3/4/5 20/auto/40/80/80+80/160MHz */
 #endif
-	{ "wl_auth_mode_x", "open", 0 },
+	{ "wl_auth_mode_x", "psk2", 0 },
 // open/shared/psk/wpa/radius
 	{ "wl_wep_x", "0", 0 },
 // WEP data encryption 0, 1, 2 : disabled/5/13
