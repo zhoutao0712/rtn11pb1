@@ -34,7 +34,7 @@ if(pptpd_support){
 function initial(){
 	show_menu();
 	
-	if(sw_mode == "1"){
+	if((sw_mode == "1") || (sw_mode == "2")){
 		 document.getElementById("table_proto").style.display = "none";
 		 document.getElementById("table_gateway").style.display = "none";
 		 document.getElementById("table_dnsenable").style.display = "none";
@@ -107,7 +107,7 @@ function valid_IP(obj_name, obj_flag){
 }
 
 function validForm(){
-	if(sw_mode == 2 || sw_mode == 3 || sw_mode == 4){
+	if(sw_mode == 3 || sw_mode == 4){
 		if(document.form.lan_dnsenable_x_radio[0].checked == 1)
 			document.form.lan_dnsenable_x.value = 1;
 		else
@@ -138,7 +138,7 @@ function validForm(){
 	var wanip_obj = wanlink_ipaddr();
 	//alert(wanip_obj +" , "+document.form.wan_netmask_x.value+" , "+document.form.wan_ipaddr_x.value);
 	if(wanip_obj != "0.0.0.0"){				
-		if(sw_mode == 1 && document.form.wan_ipaddr_x.value != "0.0.0.0" && document.form.wan_ipaddr_x.value != "" 
+		if((sw_mode == 2 || sw_mode == 1) && document.form.wan_ipaddr_x.value != "0.0.0.0" && document.form.wan_ipaddr_x.value != "" 
 				&& document.form.wan_netmask_x.value != "0.0.0.0" && document.form.wan_netmask_x.value != ""){
 			if(validator.matchSubnet2(document.form.wan_ipaddr_x.value, document.form.wan_netmask_x, document.form.lan_ipaddr.value, document.form.lan_netmask)){
 						document.form.lan_ipaddr.focus();
@@ -201,7 +201,7 @@ function validForm(){
 	// check IP changed or not
   // No matter it changes or not, it will submit the form
   //Viz modify 2011.10 for DHCP pool issue {
-	if(sw_mode == "1"){
+	if(sw_mode == 2 || sw_mode == "1"){
 		var pool_change = changed_DHCP_IP_pool();
 		if(!pool_change)
 			return false;
