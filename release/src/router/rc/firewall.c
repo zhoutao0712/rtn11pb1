@@ -2382,11 +2382,6 @@ TRACE_PT("writing Parental Control\n");
 		fprintf(fp, "-A INPUT -m state --state RELATED,ESTABLISHED -j %s\n", logaccept);
 		fprintf(fp, "-A INPUT -m state --state INVALID -j %s\n", logdrop);
 		
-#ifdef RTCONFIG_TINC
-	if(nvram_get_int("tinc_enable") == 1){
-		fprintf(fp, "-A INPUT -i gfw -p tcp -j ACCEPT\n");
-	}
-#endif
 
 		/* Specific IP access restriction */
 		write_access_restriction(fp);
@@ -4874,6 +4869,8 @@ int start_firewall(int wanunit, int lanunit)
 	char prefix[] = "wanXXXXXXXXXX_", tmp[100];
 	int lock;
 	int restart_upnp = 0;
+
+syslog(LOG_ERR, "%s:%d: 1111111111\n", __FUNCTION__, __LINE__);
 
 	if (getpid() != 1) {
 		notify_rc("start_firewall");

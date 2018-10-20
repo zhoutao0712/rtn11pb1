@@ -1782,7 +1782,7 @@ _dprintf("start_wan_if: USB modem is scanning...\n");
 
 				/* start firewall */
 // TODO: handle different lan_ifname
-				start_firewall(unit, 0);
+//				start_firewall(unit, 0);
 
 				/* setup static wan routes via physical device */
 				add_routes(prefix, "mroute", wan_ifname);
@@ -2541,7 +2541,7 @@ wan_up(char *pwan_ifname)	// oleg patch, replace
 		}
 #endif
 
-		start_firewall(wan_unit, 0);
+//		start_firewall(wan_unit, 0);
 
 		/* setup static wan routes via physical device */
 		add_routes(prefix, "mroute", wan_ifname);
@@ -2684,6 +2684,7 @@ wan_up(char *pwan_ifname)	// oleg patch, replace
 	update_wan_state(prefix, WAN_STATE_CONNECTED, 0);
 
 	// TODO: handle different lan_ifname?
+syslog(LOG_ERR, "%s:%d: 1111111111\n", __FUNCTION__, __LINE__);
 	start_firewall(wan_unit, 0);
 	//start_firewall(wan_ifname, nvram_safe_get(strcat_r(prefix, "ipaddr", tmp)),
 	//	nvram_safe_get("lan_ifname"), nvram_safe_get("lan_ipaddr"));
@@ -2829,7 +2830,7 @@ wan_up(char *pwan_ifname)	// oleg patch, replace
 			}
 			_dprintf("[%s] start dpi engine service\n", __FUNCTION__);
 			start_dpi_engine_service();
-			start_firewall(wan_unit, 0);
+//			start_firewall(wan_unit, 0);
 		}
 
 		if(nvram_get_int("qos_enable") == 1 && nvram_get_int("qos_type") != 1){
