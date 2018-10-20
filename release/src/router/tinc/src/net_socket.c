@@ -364,8 +364,8 @@ static void retry_outgoing_handler(void *data) {
 }
 
 void retry_outgoing(outgoing_t *outgoing) {
-	outgoing->timeout += 2;
-	if(outgoing->timeout < 3) outgoing->timeout = 3;
+	outgoing->timeout += 5;
+	if(outgoing->timeout < 5) outgoing->timeout = 5;
 
 	if(outgoing->timeout > maxtimeout) {
 		outgoing->timeout = maxtimeout;
