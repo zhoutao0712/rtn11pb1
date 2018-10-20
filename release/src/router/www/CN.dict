@@ -232,7 +232,7 @@ OP_MB_desc6=在无线桥接 (Media Bridge) 模式中，只有无线设备连接�
 OP_MB_desc7=ZVMODELVZ 正处于无线桥接 (Media Bridge) 模式。IP 地址已更改。
 OP_MB_desc8=请下载 <a href='http://dlcdnet.asus.com/pub/ASUS/LiveUpdate/Release/Wireless/Discovery.zip' target='_blank' style='font-family:Lucida Console;text-decoration:underline;color:#FC0;'>Device Discovery Utility</a> 来识别无线桥接 (Media Bridge) 的 IP 地址。
 OP_MB_desc9=请检查是否已经从 WAN 口移除网线。
-OP_RE_desc=在中继模式下，ZVMODELVZ 采用无线连接至一个已经存在的无线网络，以扩展无线覆盖范围。在这个模式下，防火墙、IP 分享以及 NAT 功能是禁用的。
+OP_RE_desc=在中继模式下，ZVMODELVZ 采用无线连接至一个已经存在的无线网络，以扩展无线覆盖范围。
 OP_RE_desc1=ZVMODELVZ 的 LAN  IP 地址可能已更改。
 OP_RE_desc2=关闭此窗口并重新访问 http://router.asus.com
 OP_RE_item=中继模式

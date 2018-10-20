@@ -428,7 +428,7 @@ function setScenerion(mode, express){
 		else{		// Repeater
 			document.form.sw_mode_radio[1].checked = true;
 			document.form.wlc_express.value = 0;
-			$("#mode_desc").html("<#OP_RE_desc#><br/><span style=\"color:#FC0\"><#deviceDiscorvy2#></span>");
+			$("#mode_desc").html("<#OP_RE_desc#><br/><span style=\"color:#FC0; display:none\"><#deviceDiscorvy2#></span>");
 		}
 	}
 	else if(mode == '3'){		// AP mode
