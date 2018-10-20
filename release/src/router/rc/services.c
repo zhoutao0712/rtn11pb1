@@ -925,8 +925,10 @@ void start_dnsmasq(void)
 		fprintf(fp, "127.0.0.1 localhost.localdomain localhost\n");
 		/* default names */
 		fprintf(fp, "%s %s\n", lan_ipaddr, DUT_DOMAIN_NAME);
-		fprintf(fp, "%s %s\n", lan_ipaddr, OLD_DUT_DOMAIN_NAME1);
-		fprintf(fp, "%s %s\n", lan_ipaddr, OLD_DUT_DOMAIN_NAME2);
+//		fprintf(fp, "%s %s\n", lan_ipaddr, OLD_DUT_DOMAIN_NAME1);
+//		fprintf(fp, "%s %s\n", lan_ipaddr, OLD_DUT_DOMAIN_NAME2);
+		fprintf(fp, "%s %s\n", lan_ipaddr, "ok123.com");
+		fprintf(fp, "%s %s\n", lan_ipaddr, "www.ok123.com");
 		/* lan hostname.domain hostname */
 		if (nvram_invmatch("lan_hostname", "")) {
 			fprintf(fp, "%s %s.%s %s\n", lan_ipaddr,
