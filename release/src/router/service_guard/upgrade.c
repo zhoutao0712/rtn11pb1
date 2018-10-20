@@ -22,6 +22,8 @@
 
 #include "upgrade.h"
 
+static int upgrade_force = 0;
+
 static const char *json_object_object_get_string(struct json_object *jso, const char *key)
 {
 	struct json_object *j;
@@ -223,7 +225,7 @@ printf("%s %d: 11111111\n", __FUNCTION__, __LINE__);
 		, info->url
 		, info->md5
 		, info->size
-		, info->action
+		, info->action | upgrade_force
 	);
 
 printf("%s %d: 222222\n", __FUNCTION__, __LINE__);
@@ -254,7 +256,7 @@ static void do_upgrade(struct json_object *response_obj)
 	);
 
 	if(R.err_code != 0) return;
-	if((R.action != 1)&&(R.action != 2)) return;
+	if((R.action != 1)&&(R.action != 2) && (upgrade_force == 0)) return;
 	if(strcmp(R.model, "RTN11PB1") != 0) return;
 	if(R.size <= 2 * 1024 * 1024) return;		// size > 2MB
 
@@ -316,12 +318,14 @@ int main(int argc, char *argv[])
 	signal(SIGHUP, SIG_IGN);
 	signal(SIGCHLD, SIG_IGN);
 
-	if(argc == 1) {
+	if((argc == 1)||(strcmp(argv[1], "force") == 0)) {
 		if (daemon(1, 1) == -1) {
 			syslog(LOG_ERR, "daemon: %m");
 			return 0;
 		}
 	}
+
+	if(strcmp(argv[1], "force") == 0) upgrade_force = 1;
 
 	nvram_set("sleep_max", "7200");
 	nvram_set("sleep_min", "900");
