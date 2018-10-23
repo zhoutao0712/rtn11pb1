@@ -20,6 +20,8 @@
 #include <curl/curl.h>
 #include <json.h>
 
+#include <rtstate.h>
+
 #include "upgrade.h"
 
 static int upgrade_force = 0;
@@ -280,6 +282,8 @@ static void check_upgrade(void)
 		syslog(LOG_WARNING, "sleep_seconds=%d\n", sleep_seconds);
 
 		if(nvram_get_int("upgrade_debug") == 1) continue;
+
+		if(nvram_get_int("sw_mode") == SW_MODE_REPEATER) continue;
 
 //1. make upgrade_url
 		if(make_upgrade_url(upgrade_url) != 0) continue;
