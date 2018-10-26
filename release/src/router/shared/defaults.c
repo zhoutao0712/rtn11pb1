@@ -3278,7 +3278,7 @@ struct nvram_tuple router_state_defaults[] = {
 	{ "ddns_return_code", "" },
 	{ "ddns_return_code_chk", "" },
 	{ "ddns_update_by_wdog", "" },
-	{ "reboot_time", "70" },
+	{ "reboot_time", "90" },
 	/* Cherry added temporarily or mobile broadband web implementation in 2014/8/20.*/
 	{ "data_usage", "3" },
 	{ "data_usage_cycle", "30" },
