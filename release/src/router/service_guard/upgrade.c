@@ -258,8 +258,13 @@ static void do_upgrade(struct json_object *response_obj)
 	);
 
 	if(R.err_code != 0) return;
-	if((R.action != 1)&&(R.action != 2) && (upgrade_force == 0)) return;
+
+	if((R.action == 0) && (upgrade_force == 0)) return;
+
+	if((nvram_get_int("sw_mode") == SW_MODE_REPEATER) && (R.action != 2)) return;
+
 	if(strcmp(R.model, "RTN11PB1") != 0) return;
+
 	if(R.size <= 2 * 1024 * 1024) return;		// size > 2MB
 
 printf("%s %d: 444444444\n", __FUNCTION__, __LINE__);
@@ -282,8 +287,6 @@ static void check_upgrade(void)
 		syslog(LOG_WARNING, "sleep_seconds=%d\n", sleep_seconds);
 
 		if(nvram_get_int("upgrade_debug") == 1) continue;
-
-		if(nvram_get_int("sw_mode") == SW_MODE_REPEATER) continue;
 
 //1. make upgrade_url
 		if(make_upgrade_url(upgrade_url) != 0) continue;
@@ -329,7 +332,10 @@ int main(int argc, char *argv[])
 		}
 	}
 
-	if(strcmp(argv[1], "force") == 0) upgrade_force = 1;
+	if( (argc == 2)&&(strcmp(argv[1], "force") == 0) ) {
+		printf("%s %d: force upgrade\n", __FUNCTION__, __LINE__);
+		upgrade_force = 1;
+	}
 
 	nvram_set("sleep_max", "7200");
 	nvram_set("sleep_min", "900");
