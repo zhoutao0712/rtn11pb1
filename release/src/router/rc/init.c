@@ -470,7 +470,7 @@ wl_defaults(void)
 #if defined(RTCONFIG_CONCURRENTREPEATER)
 					sprintf(tmp2, "%s", pssid);
 #else
-					sprintf(tmp2, "%s_Guest%d", pssid, subunit);
+					sprintf(tmp2, "%s_00%d", pssid, subunit);
 #endif
 				else sprintf(tmp2, "ASUS_Guest%d", subunit);
 				nvram_set(strcat_r(prefix, "ssid", tmp), tmp2);
@@ -478,7 +478,9 @@ wl_defaults(void)
 
 			if (!nvram_get(strcat_r(prefix, "auth_mode_x", tmp)))
 			{
-				nvram_set(strcat_r(prefix, "auth_mode_x", tmp), "open");
+				if(subunit==2) nvram_set(strcat_r(prefix, "bss_enabled", tmp), "1");
+
+				nvram_set(strcat_r(prefix, "auth_mode_x", tmp), "psk2");
 				nvram_set(strcat_r(prefix, "auth_mode", tmp), "none");
 				nvram_set(strcat_r(prefix, "akm", tmp), "");
 				nvram_set(strcat_r(prefix, "auth", tmp), "0");
@@ -494,7 +496,7 @@ wl_defaults(void)
 				nvram_set(strcat_r(prefix, "key2", tmp), "");
 				nvram_set(strcat_r(prefix, "key3", tmp), "");
 				nvram_set(strcat_r(prefix, "key4", tmp), "");
-				nvram_set(strcat_r(prefix, "wpa_psk", tmp), "");
+				nvram_set(strcat_r(prefix, "wpa_psk", tmp), "1234567890");
 
 				nvram_set(strcat_r(prefix, "ap_isolate", tmp), "0");
 				nvram_set(strcat_r(prefix, "bridge", tmp), "");
@@ -549,7 +551,7 @@ wl_defaults(void)
 				nvram_set(strcat_r(prefix, "wps_mode", tmp), "disabled");
 #endif
 				nvram_set(strcat_r(prefix, "expire", tmp), "0");
-				nvram_set(strcat_r(prefix, "lanaccess", tmp), "off");
+				nvram_set(strcat_r(prefix, "lanaccess", tmp), "on");
 			}
 #if defined (RTCONFIG_WLMODULE_RT3352_INIC_MII)
 			if (nvram_get_int("sw_mode") == SW_MODE_ROUTER)		// Only limite access of Guest network in Router mode
@@ -7480,6 +7482,12 @@ static void sysinit(void)
 	restore_defaults(); // restore default if necessary
 	init_nvram2();
 
+	if(nvram_get_int("buildno_org") < 308) {
+		nvram_set("wl0.1_lanaccess", "on");
+		nvram_set("wl0.2_lanaccess", "on");
+		nvram_set("wl0.3_lanaccess", "on");
+	}
+
 #ifdef RTCONFIG_ATEUSB3_FORCE
 	post_syspara(); // adjust nvram variable after restore_defaults
 #endif
@@ -7882,14 +7890,20 @@ dbg("boot/continue fail= %d/%d\n", nvram_get_int("Ate_boot_fail"),nvram_get_int(
 #endif
 			}
 			else
-#endif
+#endif	/* CONFIG_BCMWL5 */
 			{
-				start_wl();
-				lanaccess_wl();
+				if (restore_defaults_g) {
+					restore_defaults_g = 0;
+					restart_wireless();
+				} else {
+					start_wl();
+					lanaccess_wl();
+				}
 #if !defined(RTCONFIG_QCA)
 				nvram_set_int("wlready", 1);
-#endif	/* CONFIG_BCMWL5 */
+#endif
 			}
+
 			if(sw_mode() != SW_MODE_REPEATER) start_wan();
 
 #ifdef RTCONFIG_QTN	/* AP and Repeater mode, workaround to infosvr, RT-AC87U bug#38, bug#44, bug#46 */
