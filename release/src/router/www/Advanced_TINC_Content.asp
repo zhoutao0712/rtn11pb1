@@ -606,7 +606,7 @@ function validForm(){
 										<ul>
 											<li>设备ID是唯一的，同一ID同时只允许一台设备使用。</li>
 											<li>应用本页面设置后会重启广域网。</li>
-											<li>访客网络全局模式仅仅针对索引为1的访客SSID有效。自行到访客网络去开启就生效了。</li>
+											<li>访客网络全局模式开启以后，还必须到访客网络功能界面去开启对应的SSID才能生效。</li>
 										</ul>
 									</div>
 									<table width="100%" border="1" align="center" cellpadding="4" cellspacing="0" bordercolor="#6b8fa3"  class="FormTable">

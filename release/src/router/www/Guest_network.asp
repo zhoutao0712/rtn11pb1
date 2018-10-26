@@ -393,6 +393,12 @@ function applyRule(){
 		document.form.wl_wpa_psk.value = "";
 
 	if(validForm()){
+		if(sw_mode == "2") {
+			document.form.action_script.value = "reboot";
+			document.form.action_wait.value = 60;
+			if(!confirm("重启？(Reboot?)")) return false;
+		}
+
 		showLoading();
 		updateMacList();
 		inputCtrl(document.form.wl_crypto, 1);
@@ -567,6 +573,13 @@ function en_dis_guest_unit(_unit, _subunit, _setting){
 	document.unitform.appendChild(NewInput);
 	document.unitform.wl_unit.value = _unit;
 	document.unitform.wl_subunit.value = _subunit;
+
+	if(sw_mode == "2") {
+		document.unitform.action_script.value = "reboot";
+		document.unitform.action_wait.value = 60;
+		if(!confirm("重启？(Reboot?)")) return false;
+	}
+
 	document.unitform.submit();
 }
 
@@ -816,6 +829,13 @@ function updateMacList(){
 function change_wl_unit(){
 	FormActions("apply.cgi", "change_wl_unit", "", "");
 	document.form.target = "";
+
+	if(sw_mode == "2") {
+		document.form.action_script.value = "reboot";
+		document.form.action_wait.value = 60;
+		if(!confirm("重启？(Reboot?)")) return false;
+	}
+
 	document.form.submit();
 }
 

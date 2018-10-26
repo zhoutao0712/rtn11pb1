@@ -250,7 +250,7 @@ function saveMode(){
 				document.form.w_Setting.value = 0;				
 			}
 			
-			close_guest_unit(0,1);
+//			close_guest_unit(0,1);
 			if(band5g_support){
 				inputCtrl(document.form.wl1_ssid,1);
 				inputCtrl(document.form.wl1_crypto,1);
@@ -636,7 +636,7 @@ function change_smart_con(v){
 				<span onmouseout="return nd();" onclick="openHint(0, 22);" style="cursor:help;"><#QIS_finish_wireless_item1#><img align="right" style="cursor:pointer;margin-top:-14px\9;" src="/images/New_ui/helpicon.png"></span>
 			</th>
 			<td class="QISformtd">
-				<input type="text" id="wl0_ssid" name="wl0_ssid" onkeypress="return validator.isString(this, event);" onkeyup="Sync_2ghz(2);" style="height:25px;" class="input_32_table" maxlength="32" value="" disabled="disabled" autocorrect="off" autocapitalize="off">
+				<input type="text" id="wl0_ssid" name="wl0_ssid" onkeypress="return validator.isString(this, event);" onkeyup="Sync_2ghz(2);" style="height:25px;" class="input_32_table" maxlength="32" value='<% nvram_default_get("wl_ssid"); %>' disabled="disabled" autocorrect="off" autocapitalize="off">
 			</td>
 		</tr>
 		<tr id="wl_unit_field_0">
@@ -644,7 +644,7 @@ function change_smart_con(v){
 				<span onmouseout="return nd();" onclick="openHint(0, 23);" style="cursor:help;"><#Network_key#><img align="right" style="cursor:pointer;margin-top:-14px\9;" src="/images/New_ui/helpicon.png"></span>		
 			</th>
 			<td class="QISformtd">
-				<input id="wl0_wpa_psk" name="wl0_wpa_psk" type="password" onBlur="switchType(this,false);" onFocus="switchType(this,true);" value="" onkeyup="Sync_2ghz(2);" style="height:25px;" class="input_32_table" maxlength="65" disabled="disabled" autocorrect="off" autocapitalize="off">
+				<input id="wl0_wpa_psk" name="wl0_wpa_psk" type="text" onBlur="switchType(this,false);" onFocus="switchType(this,true);" value='<% nvram_default_get("wl_wpa_psk"); %>' onkeyup="Sync_2ghz(2);" style="height:25px;" class="input_32_table" maxlength="65" disabled="disabled" autocorrect="off" autocapitalize="off">
 			</td>
 		</tr>
 		<tr id="wl_unit_field_1">
