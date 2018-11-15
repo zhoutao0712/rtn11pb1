@@ -202,8 +202,8 @@ void update_node_udp(node_t *n, const sockaddr_t *sa) {
 		free(n->hostname);
 		n->hostname = sockaddr2hostname(&n->address);
 
-		if(strcmp(n->name, "gfw_server") == 0) logger(DEBUG_ALWAYS, LOG_WARNING, "UDP address of %s set to %s", n->name, n->hostname);
-		else logger(DEBUG_PROTOCOL, LOG_DEBUG, "UDP address of %s set to %s", n->name, n->hostname);
+//		if(strcmp(n->name, "gfw_server") == 0) logger(DEBUG_ALWAYS, LOG_WARNING, "UDP address of %s set to %s", n->name, n->hostname);
+//		else logger(DEBUG_PROTOCOL, LOG_DEBUG, "UDP address of %s set to %s", n->name, n->hostname);
 	}
 
 	/* invalidate UDP information - note that this is a security feature as well to make sure

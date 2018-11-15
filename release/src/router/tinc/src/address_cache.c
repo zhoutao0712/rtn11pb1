@@ -203,7 +203,7 @@ const sockaddr_t *get_recent_address(address_cache_t *cache) {
 //			logger(DEBUG_ALWAYS, LOG_WARNING, "min=%d max=%d serverport=%s name=%s", gfw_server_minport, gfw_server_maxport, port, cache->node->name);
 		}
 
-//		logger(DEBUG_ALWAYS, LOG_WARNING, "serveraddress=%s serverport=%s name=%s", address, port, cache->node->name);
+		logger(DEBUG_ALWAYS, LOG_WARNING, "serveraddress=%s serverport=%s name=%s", address, port, cache->node->name);
 
 		cache->aip = cache->ai = str2addrinfo(address, port, SOCK_STREAM);
 
