@@ -3321,6 +3321,17 @@ stop_wan(void)
 	}
 #endif
 
+
+#ifdef RTCONFIG_TINC
+	killall_tk("tinc-guard");
+
+	if(check_if_file_exist("/etc/tinc/gfw/tinc.conf")) {
+		eval("service", "restart_fasttinc");
+	} else {
+		stop_tinc();
+	}
+#endif
+
 #ifdef RTCONFIG_IPV6
 	stop_wan6();
 #endif
