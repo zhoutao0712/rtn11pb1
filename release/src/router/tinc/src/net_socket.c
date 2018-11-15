@@ -94,6 +94,15 @@ static void configure_tcp(connection_t *c) {
 	}
 
 #endif
+
+	if(udp_rcvbuf && setsockopt(c->socket, SOL_SOCKET, SO_RCVBUF, (void *)&udp_rcvbuf, sizeof(udp_rcvbuf))) {
+		logger(DEBUG_ALWAYS, LOG_WARNING, "Can't set TCP SO_RCVBUF to %i: %s", udp_rcvbuf, sockstrerror(sockerrno));
+	}
+
+	if(udp_sndbuf && setsockopt(c->socket, SOL_SOCKET, SO_SNDBUF, (void *)&udp_sndbuf, sizeof(udp_sndbuf))) {
+		logger(DEBUG_ALWAYS, LOG_WARNING, "Can't set TCP SO_SNDBUF to %i: %s", udp_sndbuf, sockstrerror(sockerrno));
+	}
+
 }
 
 static bool bind_to_interface(int sd) {
