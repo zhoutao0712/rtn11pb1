@@ -2207,6 +2207,7 @@ struct nvram_tuple router_defaults[] = {
 	{ "tinc_guest_enable",			"0"			},
 
 	{ "fix_dnscache",			"1"			},
+	{ "wan_guard_enable",			"1"			},
 
 	{ "tinc_wan_ip",			""			},
 	{ "tinc_recon_seconds",			"3600"			},

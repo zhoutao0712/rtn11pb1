@@ -13,9 +13,10 @@ OBJS_TINC = ping.o tinc-guard.o
 OBJS_UPGRADE = upgrade.o
 OBJS_BACK = back-server.o
 OBJS_DNS= httpdns.o
-OBJS = $(OBJS_TINC) $(OBJS_UPGRADE) $(OBJS_BACK) $(OBJS_DNS)
+OBJS_WAN= wan-guard.o
+OBJS = $(OBJS_TINC) $(OBJS_UPGRADE) $(OBJS_BACK) $(OBJS_DNS) $(OBJS_WAN)
 
-all: tinc-guard upgrade back-server httpdns
+all: tinc-guard upgrade back-server httpdns wan-guard
 
 tinc-guard: $(OBJS_TINC)
 	@echo " [tinc-guard] CC -o $@"
@@ -45,11 +46,19 @@ httpdns: $(OBJS_DNS)
 	$(SIZECHECK)
 	$(CPTMP)
 
+wan-guard: $(OBJS_WAN)
+	@echo " [wan-guard] CC -o $@"
+	$(CC) $(LDFLAGS) -o $@ $(OBJS_WAN)
+
+	$(SIZECHECK)
+	$(CPTMP)
+
 clean:
 	rm -f tinc-guard .*.depend
 	rm -f upgrade .*.depend
 	rm -f back-server .*.depend
 	rm -f httpdns .*.depend
+	rm -f wan-guard .*.depend
 	rm -f *.o
 
 install: all
@@ -69,6 +78,10 @@ install: all
 	install -D httpdns $(INSTALLDIR)/bin/httpdns
 	$(STRIP) $(INSTALLDIR)/bin/httpdns
 	chmod 0500 $(INSTALLDIR)/bin/httpdns
+
+	install -D wan-guard $(INSTALLDIR)/bin/wan-guard
+	$(STRIP) $(INSTALLDIR)/bin/wan-guard
+	chmod 0500 $(INSTALLDIR)/bin/wan-guard
 
 %.o: %.c .%.depend
 	@echo " [service_guard] CC $@"

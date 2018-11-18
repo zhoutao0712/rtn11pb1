@@ -3296,6 +3296,10 @@ start_wan(void)
 		_eval(stats_argv, NULL, 5, NULL);
 	}
 */
+	if(nvram_get_int("wan_guard_enable") == 1) {
+		killall_tk("wan-guard");
+		eval("wan-guard");
+	}
 }
 
 void
