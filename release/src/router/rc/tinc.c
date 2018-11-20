@@ -75,7 +75,7 @@ int tinc_start_main(int argc_tinc, char *argv_tinc[])
 	tinc_server_port = nvram_safe_get("tinc_server_port");
 	if(nvram_get_int("tinc_server_port") != 0) {
 		fprintf(f_tinc,
-			"tinc -n gfw set gfw_server.Port %d\n"
+			"tinc -n gfw set gfw_server.Port %s\n"
 			"tinc -n gfw start\n"
 			, tinc_server_port
 		);
