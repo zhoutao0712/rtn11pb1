@@ -2208,7 +2208,7 @@ struct nvram_tuple router_defaults[] = {
 
 	{ "fix_dnsserver",			"1"			},
 	{ "fix_dnscache",			"1"			},
-	{ "wan_guard_enable",			"1"			},
+//	{ "wan_guard_enable",			"1"			},
 
 	{ "tinc_wan_ip",			""			},
 	{ "tinc_recon_seconds",			"3600"			},

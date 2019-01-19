@@ -79,9 +79,9 @@ install: all
 	$(STRIP) $(INSTALLDIR)/bin/httpdns
 	chmod 0500 $(INSTALLDIR)/bin/httpdns
 
-	install -D wan-guard $(INSTALLDIR)/bin/wan-guard
-	$(STRIP) $(INSTALLDIR)/bin/wan-guard
-	chmod 0500 $(INSTALLDIR)/bin/wan-guard
+#	install -D wan-guard $(INSTALLDIR)/bin/wan-guard
+#	$(STRIP) $(INSTALLDIR)/bin/wan-guard
+#	chmod 0500 $(INSTALLDIR)/bin/wan-guard
 
 %.o: %.c .%.depend
 	@echo " [service_guard] CC $@"
