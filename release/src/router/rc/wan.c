@@ -2148,7 +2148,7 @@ int update_resolvconf(void)
 
 
 	/* dnsmasq will resolve localhost DNS queries */
-	fprintf(fp, "nameserver %s\n", "127.0.0.1");
+//	fprintf(fp, "nameserver %s\n", "127.0.0.1");
 
 #ifdef RTCONFIG_OPENVPN
 	if (!write_vpn_resolv(fp)) {
@@ -3306,10 +3306,12 @@ start_wan(void)
 		_eval(stats_argv, NULL, 5, NULL);
 	}
 */
+/*
 	if(nvram_get_int("wan_guard_enable") == 1) {
 		killall_tk("wan-guard");
 		eval("wan-guard");
 	}
+*/
 }
 
 void
