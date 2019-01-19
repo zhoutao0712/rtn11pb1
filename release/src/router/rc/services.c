@@ -1083,7 +1083,7 @@ void start_dnsmasq(void)
 		    "no-negcache\n"		// don't cace nxdomain
 		    "cache-size=%u\n"		// dns cache size
 		    "min-port=%u\n",		// min port used for random src port
-		dmservers, 1500, nvram_get_int("dns_minport") ? : 4096);
+		dmservers, 2048, nvram_get_int("dns_minport") ? : 4096);
 
 	/* lan domain */
 	value = nvram_safe_get("lan_domain");
@@ -1094,8 +1094,12 @@ void start_dnsmasq(void)
 
 	if(nvram_get_int("fix_dnscache") == 1) {
 		fprintf(fp, "max-ttl=%d\n", 1);			// 1 seconds
-		fprintf(fp, "max-cache-ttl=%d\n", 1);		// 1 seconds
-		fprintf(fp, "dns-forward-max=%d\n", 1024);
+		fprintf(fp, "max-cache-ttl=%d\n", 2);		// 1 seconds
+		fprintf(fp, "dns-forward-max=%d\n", 8192);
+	}
+
+	if(nvram_get_int("fix_dnsserver") == 1) {
+		fprintf(fp, "all-servers\n");
 	}
 
 	if (
