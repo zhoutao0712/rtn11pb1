@@ -104,8 +104,8 @@ static int check_dns(void)
 	share.dnsbase = evdns_base_new(share.base, 1);
 	if (!share.dnsbase) return 2;
 
-	evdns_base_set_option(share.dnsbase, "timeout", "3.0");
-	evdns_base_set_option(share.dnsbase, "max-timeouts", "2");
+	evdns_base_set_option(share.dnsbase, "timeout", "10.0");
+	evdns_base_set_option(share.dnsbase, "max-timeouts", "3");
 
 	for (i = 0; i < 3; ++i) {
 		struct evutil_addrinfo hints;
@@ -147,9 +147,9 @@ int main(int argc, char **argv)
 		}
 	}
 
-	sleep(10);
+	sleep(60);
 	while(1) {
-		sleep(10);
+		sleep(60);
 		if(check_dns() != 0) {
 			sleep(5);
 			if(check_dns() != 0) {
