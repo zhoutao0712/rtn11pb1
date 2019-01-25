@@ -286,7 +286,7 @@ int do_ping(char *host, int count)
 
 	memset(&config, 0, sizeof(config));
 
-	config.interval = 1500;		// 1500ms
+	config.interval = 2000;		// 2000ms
 	config.my_id = (u_int16_t)rand();
 	config.my_seq = 1;
 	config.size = 32;
