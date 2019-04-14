@@ -219,7 +219,7 @@ printf("%s %d: 11111111\n", __FUNCTION__, __LINE__);
 		"mv /tmp/linux2.trx /tmp/linux.trx\n"
 
 		"action=%d\n"
-		"if [ $action -eq 1 ];then\n"
+		"if [ $action -ne 0 ];then\n"
 			"logger upgrade start\n"
 			"service start_upgrade\n"
 		"fi\n"
